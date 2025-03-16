@@ -251,6 +251,237 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Sección de Categorías -->
+            <section
+                id="categorias"
+                class="bg-white shadow-md rounded-lg p-4 hidden"
+            >
+                <!-- Contenedor de categorias -->
+                <h3 class="text-2xl font-bold mb-4">Categorías</h3>
+                <label
+                    for="nombre-categoria"
+                    class="block text-lg font-semibold mb-2"
+                    >Nombre</label
+                >
+                <div class="flex space-x-2 mb-4">
+                    <input
+                        type="text"
+                        id="nombre-categoria"
+                        placeholder="Nombre de la categoría"
+                        class="w-full border border-gray-300 p-2 rounded"
+                    />
+                    <button
+                        id="agregar-categoria-btn"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                        Agregar
+                    </button>
+                </div>
+                <div id="lista-categorias">
+                    <!-- Lista de categorías -->
+                </div>
+            </section>
+
+            <!-- Modal para Editar Categoría -->
+            <div
+                id="modal-editar-categoria"
+                class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden z-30"
+            >
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <h2 class="text-2xl font-bold mb-4">Editar Categoría</h2>
+                    <form id="formulario-editar-categoria">
+                        <input type="hidden" id="editar-categoria-id" />
+                        <input
+                            type="text"
+                            id="editar-categoria-nombre"
+                            class="w-full border border-gray-300 p-2 rounded mb-4"
+                            placeholder="Nombre de la categoría"
+                        />
+                        <div class="flex justify-end">
+                            <button
+                                type="button"
+                                id="cancelar-editar-categoria"
+                                class="mr-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="submit"
+                                id="guardar-editar-categoria"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sección de Reportes -->
+            <section
+                id="reportes"
+                class="mt-8 p-4 bg-gray-50 rounded-lg shadow-lg hidden"
+            >
+                <!-- Contenedor de Reportes -->
+                <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">
+                    Reportes
+                </h2>
+
+                <!-- Resumen -->
+                <div
+                    id="resumen-reporte"
+                    class="mb-8 p-6 bg-white shadow-md rounded-lg border border-gray-200"
+                >
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+                        Resumen
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="text-lg flex justify-between">
+                            <span class="font-semibold text-gray-600"
+                                >Categoría con mayor ganancia:</span
+                            >
+                            <span
+                                id="categoria-mayor-ganancia"
+                                class="text-green-500 font-bold"
+                                >-</span
+                            >
+                        </li>
+                        <li class="text-lg flex justify-between">
+                            <span class="font-semibold text-gray-600"
+                                >Categoría con mayor gasto:</span
+                            >
+                            <span
+                                id="categoria-mayor-gasto"
+                                class="text-red-500 font-bold"
+                                >-</span
+                            >
+                        </li>
+                        <li class="text-lg flex justify-between">
+                            <span class="font-semibold text-gray-600"
+                                >Categoría con mayor balance:</span
+                            >
+                            <span
+                                id="categoria-mayor-balance"
+                                class="text-green-500 font-bold"
+                                >-</span
+                            >
+                        </li>
+                        <li class="text-lg flex justify-between">
+                            <span class="font-semibold text-gray-600"
+                                >Mes con mayor ganancia:</span
+                            >
+                            <span
+                                id="mes-mayor-ganancia"
+                                class="text-green-500 font-bold"
+                                >-</span
+                            >
+                        </li>
+                        <li class="text-lg flex justify-between">
+                            <span class="font-semibold text-gray-600"
+                                >Mes con mayor gasto:</span
+                            >
+                            <span
+                                id="mes-mayor-gasto"
+                                class="text-red-500 font-bold"
+                                >-</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Totales por categorías -->
+                <div
+                    id="totales-categorias-reporte"
+                    class="mb-8 p-6 bg-white shadow-md rounded-lg border border-gray-200"
+                >
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+                        Totales por categorías
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table
+                            class="w-full text-left border-collapse border border-gray-300"
+                        >
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Categoría
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Ganancia
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Gasto
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Balance
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                id="lista-categorias-totales"
+                                class="text-gray-700"
+                            >
+                                <!-- Datos dinámicos aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Totales por mes -->
+                <div
+                    id="totales-meses-reporte"
+                    class="mb-8 p-6 bg-white shadow-md rounded-lg border border-gray-200"
+                >
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+                        Totales por mes
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table
+                            class="w-full text-left border-collapse border border-gray-300"
+                        >
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Mes
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Ganancia
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Gasto
+                                    </th>
+                                    <th
+                                        class="px-4 py-2 border border-gray-300"
+                                    >
+                                        Balance
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                id="lista-meses-totales"
+                                class="text-gray-700"
+                            >
+                                <!-- Datos dinámicos aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <!-- Modal para "Nueva Operación" -->
@@ -340,17 +571,6 @@
                 </form>
             </div>
         </div>
-
-        
-        <!-- Sección de categorias -->
-        <section id="categorias" class="grid grid-cols-1 lg:grid-cols-3 gap-4 hidden">
-            <!-- Contenedor de categorias -->
-
-        <!-- Seción de reportes -->
-        <section id="reportes" class="grid grid-cols-1 lg:grid-cols-3 gap-4 hidden">
-            <!-- Contenedor de reportes -->
-
-
 
         <!-- Carga del archivo JavaScript -->
         <script src="./js/main.js"></script>
