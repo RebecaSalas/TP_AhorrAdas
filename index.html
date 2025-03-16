@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/jpg" href="./styles/imagenes/logo.jpg" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+            integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>AhorrADAs</title>
+    </head>
+    <body class="bg-red-100">
+        <!-- Encabezado -->
+        <header
+            class="fixed top-0 w-full bg-red-500 text-white p-4 z-10 h-14 md:h-auto"
+        >
+            <div class="container mx-auto flex items-center justify-between">
+                <!-- Título del sitio -->
+                <h1 class="text-3xl font-bold hover:bg-red-700 cursor-pointer">
+                    <i class="fa-solid fa-wallet mr-2"></i>AhorrADAs
+                </h1>
+                <!-- Navegación para escritorio -->
+                <nav class="hidden md:flex flex-wrap justify-end space-x-4">
+                    <a
+                        href="#balance"
+                        class="py-2 px-4 text-white hover:bg-red-700"
+                    >
+                        <i class="fa-solid fa-chart-line mr-2"></i>Balance</a
+                    >
+                    <a
+                        href="#categorias"
+                        class="py-2 px-4 text-white hover:bg-red-700"
+                    >
+                        <i class="fa-solid fa-tag mr-2"></i>Categorías</a
+                    >
+                    <a
+                        href="#reportes"
+                        class="py-2 px-4 text-white hover:bg-red-700"
+                    >
+                        <i class="fa-solid fa-chart-pie mr-2"></i>Reportes</a
+                    >
+                </nav>
+                <!-- Íconos del menú en modo responsive -->
+                <div class="flex items-center md:hidden">
+                    <i
+                        id="hamburger-icon"
+                        class="fa-solid fa-bars text-2xl cursor-pointer block ml-4"
+                    ></i>
+                    <i
+                        id="close-icon"
+                        class="fa-solid fa-times text-2xl cursor-pointer hidden ml-4"
+                    ></i>
+                </div>
+            </div>
+            <!-- Menú modal para modo responsive -->
+            <nav
+                id="menu-modal"
+                class="bg-white w-full absolute top-14 left-0 hidden flex flex-col p-4 space-y-4 md:hidden"
+            >
+                <a
+                    href="#balance"
+                    class="py-2 px-4 text-black hover:text-white hover:bg-red-500"
+                >
+                    <i class="fa-solid fa-chart-line mr-2"></i>Balance</a
+                >
+                <a
+                    href="#categorias"
+                    class="py-2 px-4 text-black hover:text-white hover:bg-red-500"
+                >
+                    <i class="fa-solid fa-tag mr-2"></i>Categorías</a
+                >
+                <a
+                    href="#reportes"
+                    class="py-2 px-4 text-black hover:text-white hover:bg-red-500"
+                >
+                    <i class="fa-solid fa-chart-pie mr-2"></i>Reportes</a
+                >
+            </nav>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main
+            id="contenido-principal"
+            class="container mx-auto mt-16 p-4 max-w-7xl"
+        >
+            <!-- Sección de Balance -->
+            <section id="balance" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <!-- Contenedor de Balance -->
+                <div class="col-span-1">
+                    <div class="bg-white shadow-md rounded-lg p-4">
+                        <h2 class="text-2xl font-bold mb-4">Balance</h2>
+                        <div class="flex flex-col space-y-2">
+                            <div class="flex justify-between">
+                                <span>Ganancias:</span>
+                                <span
+                                    id="balance-ganancias"
+                                    class="text-green-500"
+                                    >+$0</span
+                                >
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Gastos:</span>
+                                <span id="balance-gastos" class="text-red-500"
+                                    >-$0</span
+                                >
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Total:</span>
+                                <span id="balance-total">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contenedor de Filtros -->
+                    <div
+                        id="contenedor-filtros"
+                        class="bg-white shadow-md rounded-lg p-4 mt-4"
+                    >
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Filtros</h3>
+                            <a
+                                href="#"
+                                class="text-sm text-red-500 hover:underline"
+                                >Ocultar filtros</a
+                            >
+                        </div>
+
+                        <div id="contenido-filtros">
+                            <div>
+                                <label class="block text-gray-700">Tipo:</label>
+                                <select
+                                    id="filter-tipo"
+                                    class="w-full border border-gray-300 p-2 rounded mb-2"
+                                >
+                                    <option value="todos">Todos</option>
+                                    <option value="gasto">Gasto</option>
+                                    <option value="ganancia">Ganancia</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="block text-gray-700"
+                                    >Categoría:</label
+                                >
+                                <select
+                                    id="filter-categoria"
+                                    class="w-full border border-gray-300 p-2 rounded mb-2"
+                                >
+                                    <option value="todas">Todas</option>
+                                    <option value="transporte">
+                                        Transporte
+                                    </option>
+                                    <option value="trabajo">Trabajo</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="block text-gray-700"
+                                    >Desde:</label
+                                >
+                                <input
+                                    id="filter-fecha"
+                                    type="date"
+                                    class="w-full border border-gray-300 p-2 rounded mb-2"
+                                />
+                            </div>
+                            <div class="mb-2">
+                                <label class="block text-gray-700"
+                                    >Ordenar por:</label
+                                >
+                                <select
+                                    id="filter-ordenar"
+                                    class="w-full border border-gray-300 p-2 rounded mb-2"
+                                >
+                                    <option value="fecha-reciente">
+                                        Más reciente
+                                    </option>
+                                    <option value="fecha-antigua">
+                                        Menos reciente
+                                    </option>
+                                    <option value="monto-mayor">
+                                        Mayor monto
+                                    </option>
+                                    <option value="monto-menor">
+                                        Menor monto
+                                    </option>
+                                    <option value="descripcion-asc">A/Z</option>
+                                    <option value="descripcion-desc">
+                                        Z/A
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor de Operaciones -->
+                <div class="col-span-2">
+                    <div class="bg-white shadow-md rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold">Operaciones</h3>
+                            <button
+                                id="abrir-modal-btn"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                                + Nueva operación
+                            </button>
+                        </div>
+                        <div
+                            class="flex justify-center"
+                            id="operations-placeholder"
+                        >
+                            <img
+                                src="./styles/imagenes/undraw_mobile-analytics_dtjl.png"
+                                alt="Imagen de operaciones"
+                                class="w-1/2 mb-4"
+                            />
+                        </div>
+                        <div
+                            class="text-center text-gray-500 font-bold"
+                            id="mensaje-sin-resultados"
+                        >
+                            Sin resultados.
+                        </div>
+                        <div
+                            class="text-center text-gray-500"
+                            id="mensaje-cambiar-filtros"
+                        >
+                            Cambia los filtros o agrega operaciones.
+                        </div>
+                        <div id="lista-operaciones" class="mt-4 hidden">
+                            <div
+                                class="grid grid-cols-5 gap-4 font-bold text-gray-500"
+                            >
+                                <div>Descripción</div>
+                                <div>Categoría</div>
+                                <div>Fecha</div>
+                                <div>Monto</div>
+                                <div>Acciones</div>
+                            </div>
+                            <div id="operaciones-lista" class="mt-2">
+                                <!-- Aquí se agregarán las operaciones dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal para "Nueva Operación" -->
+        <div
+            id="modal-nueva-operacion"
+            class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden z-30"
+        >
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4">Nueva operación</h2>
+                <form id="formulario-nueva-operacion">
+                    <div class="mb-4">
+                        <label for="descripcion" class="block text-gray-700"
+                            >Descripción:</label
+                        >
+                        <input
+                            type="text"
+                            id="descripcion"
+                            name="descripcion"
+                            class="w-full border border-gray-300 p-2 rounded"
+                        />
+                    </div>
+                    <div class="mb-4">
+                        <label for="monto" class="block text-gray-700"
+                            >Monto:</label
+                        >
+                        <input
+                            type="number"
+                            id="monto"
+                            name="monto"
+                            value="0"
+                            class="w-full border border-gray-300 p-2 rounded"
+                        />
+                    </div>
+                    <div class="mb-4">
+                        <label for="tipo" class="block text-gray-700"
+                            >Tipo:</label
+                        >
+                        <select
+                            id="tipo"
+                            name="tipo"
+                            class="w-full border border-gray-300 p-2 rounded"
+                        >
+                            <option value="gasto">Gasto</option>
+                            <option value="ganancia">Ganancia</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="categoria" class="block text-gray-700"
+                            >Categoría:</label
+                        >
+                        <select
+                            id="categoria"
+                            name="categoria"
+                            class="w-full border border-gray-300 p-2 rounded"
+                        >
+                            <option value="transporte">Transporte</option>
+                            <option value="trabajo">Trabajo</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="fecha" class="block text-gray-700"
+                            >Fecha:</label
+                        >
+                        <input
+                            type="date"
+                            id="fecha"
+                            name="fecha"
+                            class="w-full border border-gray-300 p-2 rounded"
+                        />
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            type="button"
+                            id="cancelar-btn"
+                            class="mr-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            type="submit"
+                            id="agregar-btn"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Agregar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        
+        <!-- Sección de categorias -->
+        <section id="categorias" class="grid grid-cols-1 lg:grid-cols-3 gap-4 hidden">
+            <!-- Contenedor de categorias -->
+
+        <!-- Seción de categorias -->
+        <section id="reportes" class="grid grid-cols-1 lg:grid-cols-3 gap-4 hidden">
+            <!-- Contenedor de categorias -->
+
+
+
+        <!-- Carga del archivo JavaScript -->
+        <script src="./js/main.js"></script>
+    </body>
+</html>
