@@ -1,5 +1,7 @@
 // Selección de elementos del DOM
 const elementos = {
+   ///Sección Balance////
+   
   //// Sección de Categorías ////
   agregarCategoriaBtn: document.getElementById('agregar-categoria-btn'), // Botón para agregar categorías
   nombreCategoriaInput: document.getElementById('nombre-categoria'), // Campo para el nombre de la categoría
